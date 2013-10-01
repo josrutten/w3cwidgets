@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+	<head>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link rel="stylesheet" type="text/css" href="i18n.css" />
+		<title>Widget with i18n</title>
+        <script>
+            function showName() {
+                var name = document.getElementById("name");
+                name.innerHTML = widget.name;
+            }
+        </script>
+    </head>
+	<body onload="showName()">
+		<h1 id="name"></h1>
+        <p><image src="flag.jpg"/></p>
+        <p><image src="allflags.jpg"/></p>
+	</body>
+</html>

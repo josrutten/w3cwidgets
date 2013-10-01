@@ -1,0 +1,14 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ 	    id="http://www.iprofs.nl/w3cwidgets-workshop-preferences-classroom"
+ 	    version="1.0"
+        width="300"
+        height="200"
+        >
+  <name>Preferences Widget</name>
+  <description>widget with preferences</description>
+  <content src="index.html"/>
+  <icon src="images/preferences.jpg"/>
+  <author>hier je naam</author>
+  <access origin="https://ontwikkelstraat.iprofs.nl/svn/iprofs/nl/iprofs/kgb/20130227/w3cwidgets"/>  
+  <license>Free to use and distribute</license>
+</widget>

@@ -1,0 +1,16 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ 	    id="http://www.iprofs.nl/w3cwidgets-workshop-i18n-teacher"
+ 	    version="1.0"
+        width="400"
+        height="600"
+        defaultlocale="fr"
+        >
+  <name xml:lang="nl-nl">Widget met taal ondersteuning</name>
+  <name xml:lang="en">W3C widget with internationalization</name>
+  <description>widget with localization for english, french and dutch</description>
+  <content src="index.html"/>
+  <icon src="images/i18n.jpg"/>
+  <author>Jos Rutten</author>
+  <access origin="https://ontwikkelstraat.iprofs.nl/svn/iprofs/nl/iprofs/kgb/20130227/w3cwidgets"/>  
+  <license>Free to use and distribute</license>
+</widget>

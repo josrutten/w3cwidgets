@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nl.iprofs.kgb.w3cwidgets</groupId>
+    <artifactId>widget-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>W3C widget workshop parent pom</name>
+
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>zip</id>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <ac:if xmlns:ac="antlib:net.sf.antcontrib">
+                  <available file="${basedir}/src/main/resources" type="dir"/>
+                  <then>
+                    <zip destfile="${basedir}/target/${artifactId}.wgt" basedir="${basedir}/src/main/resources"/>
+                    <copy file="${basedir}/target/${artifactId}.wgt" todir="${wookie.deploy.dir}"/>
+                  </then>
+                </ac:if>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>1.4.1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-commons-net</artifactId>
+            <version>1.8.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+</project>

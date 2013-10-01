@@ -1,0 +1,209 @@
+---------------------
+Opdracht 0
+Start wookie:
+ Download wookie van de site genoemd in instructies/instructies.txt
+ Pak de zip uit.
+ Run startup.bat of startup.sh (op unix/mac eerst nog even chmod 755 *.sh)
+ Ga naar http://localhost:8080/wookie
+ Bekijk wat demo's
+
+---------------------
+Opdracht 1
+Maak een helloworld applicatie met:
+ een icoontje.
+ een html bestand
+ een naam en beschrijving in de configuratie
+
+Begin met: 
+svn co https://ontwikkelstraat.iprofs.nl/svn/iprofs/nl/iprofs/kgb/20130227/w3cwidgets
+Volg de handleiding in instructies/instructies.txt
+
+---------------------
+Opdracht 2
+Maak een widget die waarden uit de config.xml toont:
+Vul hier je eigen naam etc. in.
+ name
+ author
+ description
+
+---------------------
+Opdracht 3
+Maak een widget met gebruik van preferences:
+Toon de waarden van de preferences in je widget.
+ een read-only preference met de naam van je bedrijf
+ een preference met je naam, en een knop om deze te wijzigen.
+
+---------------------
+Opdracht 4
+Maak een widget die gebruik maakt van i18n:
+ een aparte flag(.jpg) voor de locales : en-us, en-en, nl, fr
+ een plaatje met alle vlaggen erop (allflags.jpg)
+ Afwijkende textkleur (via .css) voor de locale en-us
+
+---------------------
+Opdracht 5
+Maak een widget die gebruik maakt een rest service:
+http://localhost:8888/square/<number>
+Deze geeft het kwadraat van <number> terug.
+ eerst de restservices opstarten : mvn package exec:java
+ Maak een input veld voor <number>
+ en een knop om het kwadraat uit te rekenen.
+ Toon het resultaat in de widget.
+
+---------------------
+Opdracht 6
+Maak een widget die een lijst vanuit een json restservice in html toont.
+http://localhost:8888/fibonacci/<number>
+
+Fibonacci 3 geeft bv in html:
+<p>Fibonacci(0) = 0</p>
+<p>Fibonacci(1) = 1</p>
+<p>Fibonacci(2) = 1</p>
+<p>Fibonacci(3) = 2</p>
+
+---------------------
+Opdracht 7
+Maak een widget met camera.
+ een knop om een foto te nemen.
+ toon de foto in de widget
+
+
+============================================================================
+Reference material below
+============================================================================
+
+packaging
+---------------------
+myfirstwidget.wgt
+     images/mijneigenicoontje.png
+     index.html (xhtml,htm,svg,xht) (default start file) 
+     config.xml (het configuratie bestand)
+     icon.png (jpg,gif,svg,ico)(default icon)
+     style.css
+
+config.xml
+---------------------
+<widget xmlns="http://www.w3.org/ns/widgets"
+	id="http://www.iprofs.nl/w3cwidgets-workshop"
+	version="1.0"
+	width="320"
+	height="480"
+>
+    <name>Widget naam</name>
+    <description>voorbeeld widget config</description>
+    <content src="index.html"/>
+    <icon src="images/icon.png"/>
+    <preference name=”pref1”/>
+    <preference name=”pref2” value=”een waarde” readonly=”true”/>
+    <author>Jos Rutten</author>
+    <access origin="https://svnurlvanmijnwidget"/>
+    <license></license>
+</widget>
+
+
+widget api
+---------------------
+interface Widget {
+    readonly attribute DOMString     author;
+    readonly attribute DOMString     description;
+    readonly attribute DOMString     name;
+    readonly attribute DOMString     shortName;
+    readonly attribute DOMString     version;
+    readonly attribute DOMString     id;
+    readonly attribute DOMString     authorEmail;
+    readonly attribute DOMString     authorHref;
+    readonly attribute WidgetStorage preferences;
+    readonly attribute unsigned long height;
+    readonly attribute unsigned long width;
+};
+
+[NoInterfaceObject]
+interface WidgetStorage : Storage {
+};
+
+interface Storage {
+    readonly attribute unsigned long length;
+    DOMString? key(unsigned long index);
+    getter DOMString getItem(DOMString key);
+    setter creator void setItem(DOMString key, DOMString value);
+    deleter void removeItem(DOMString key);
+    void clear();
+};
+
+
+widget api toegepast
+---------------------
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+    <head>
+        <script>
+            function getWidgetValues() {
+                var naam = document.getElementById("naam");
+                naam.innerHTML = widget.name;
+            }
+        </script>
+    </head>
+    <body onload="getWidgetValues()">
+    <h1 id="naam"></h1>
+    </body>
+</html>
+
+preferences
+---------------------
+config.xml:
+<preference name="opslaan" value="een willekeurige waarde"/>
+<preference name="ophalen" value="nog een waarde" readonly="true"/>
+
+javascript:
+var ophalen = document.getElementById("id");
+ophalen.innerHTML = widget.preferences.getItem("myPreference");
+var opslaan = document.forms["form"].elements["id"].value;
+widget.preferences.setItem("myPreference", opslaan);
+
+of:
+ophalen.innerHTML = widget.preferences[myPreference];
+widget.preferences[myPreference] = opslaan;
+
+i18n
+---------------------
+widget.wgt
+   locales/en-us/a.gif
+   locales/en-en/a.gif
+   locales/en/b.gif
+   locales/nl/c.gif
+   a.gif
+   b.gif
+   c.gif
+   index.html
+   config.xml
+
+Rest services met jquery
+stel rest service geeft het volgende.
+---------------------
+({
+	"title": "de titel",
+	"items": [{"link": "http://www.iprofs.nl"}
+	   {"link": "http://www.w3.org/TR/widgets"}]})
+
+Dan mbv jquery:
+
+$.getJSON('test/rest/json', function(data) {
+	alert("titel: " + data.title);
+	alert("second link: " + data.items[1].link);
+
+	$.each(data.items, function(key, val) {
+		alert("link: " + key + ': ' + val.link);
+	});
+});
+
+client side render met jquery
+---------------------
+$('#id').append('<p>link=' + val.link + '</p>');
+
+Bondi api
+---------------------
+var camera = bondi.camera.getCameras()[0];
+  camera.takePicture(
+     function(x) {
+       widget.preferences.image = x;
+     },
+     function(y){alert("mislukt");});

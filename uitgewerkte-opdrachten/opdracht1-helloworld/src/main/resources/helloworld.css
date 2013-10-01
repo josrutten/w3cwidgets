@@ -1,0 +1,27 @@
+html {
+height:100%; 
+max-height:100%; 
+padding:0; 
+margin:0; 
+border:0; 
+font-size:80%; 
+}
+
+body {
+ margin-top:0px;	
+ margin-left:0px;
+ color: #000000;
+ font:normal normal 18px sans-serif;
+} 
+
+p
+{
+    font:normal normal 12px sans-serif;	
+}
+
+h1
+{
+	color: #E32219;
+    font:normal normal 20px sans-serif;	
+}
+

@@ -1,0 +1,14 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ 	    id="http://www.iprofs.nl/w3cwidgets-workshop-client-side-render-teacher"
+ 	    version="1.0"
+        width="400"
+        height="500"
+        >
+  <name>Client side render demo</name>
+  <description>Widget with client side rendering</description>
+  <content src="index.html"/>
+  <icon src="images/render.jpg"/>
+  <author>Jos Rutten</author>
+  <access origin="https://ontwikkelstraat.iprofs.nl/svn/iprofs/nl/iprofs/kgb/20130227/w3cwidgets"/>  
+  <license>Free to use and distribute</license>
+</widget>

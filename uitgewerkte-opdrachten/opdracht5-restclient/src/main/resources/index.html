@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="rest.css" />
+        <title>Widget with simple rest client</title>
+        <script type="text/javascript" src="scripts/jquery.js" charset="utf-8"></script>
+        <script>
+            function calculateSquare() {
+                var x = document.forms["xForm"].elements["x"].value;
+                console.log("calculateSquare");
+                $.getJSON("http://localhost:8888/square/" + x, function(data) {
+                   console.log("inner function");
+                    var xSquare = document.getElementById("xSquare");
+                    xSquare.innerHTML = data.result;
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Calculate square</h1>
+        <form id="xForm">
+            x:<input type="text" name="x" />
+        </form>
+        x^2:<p id="xSquare"></p>
+
+        <a href="javascript: calculateSquare()" class="button">Calculate Square</a>
+    </body>
+</html>

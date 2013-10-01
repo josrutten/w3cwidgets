@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="render.css" />
+        <title>Widget with simple rest client</title>
+        <script type="text/javascript" src="scripts/jquery.js" charset="utf-8"></script>
+        <script>
+            function reeks() {
+                var n = document.forms["nForm"].elements["n"].value;
+                console.log("reeks n=" + n);
+                $('#fibonacci').empty();
+                console.log("emptied div.");
+                $.getJSON("http://localhost:8888/fibonacci/" + n, function(data) {
+                    $.each(data.FibonacciReeks, function(key, val) {
+                        console.log("waarde: " + val.waarde + " n: " + val.n);
+                        $('#fibonacci').append('<p>Fibonacci(' + val.n + ') = ' + val.waarde + '</p>');
+                    });
+
+                });
+            }
+  
+        </script>
+    </head>
+    <body>
+        <h1>Fibonacci</h1>
+        <form id="nForm">
+            n:<input type="text" name="n" />
+        </form>
+ 
+        <a href="javascript: reeks()" class="button">Fibonacci reeks</a>
+        <div id="fibonacci"/>
+    </body>
+</html>

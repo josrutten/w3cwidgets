@@ -1,0 +1,2 @@
+Dit bestand wordt 'gezipped' in zip bij de widget parent pom, maar wordt verder niet gebruikt.
+Van dit parent project gebruiken we alleen de pom.

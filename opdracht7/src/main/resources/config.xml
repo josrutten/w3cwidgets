@@ -1,0 +1,14 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ 	    id="http://www.iprofs.nl/w3cwidgets-workshop-camera-classroom"
+ 	    version="1.0"
+        width="400"
+        height="500"
+        >
+  <name>Camera</name>
+  <description>Camera widget with bondi API</description>
+  <content src="index.html"/>
+  <icon src="images/camera.jpg"/>
+  <author>Jos Rutten</author>
+  <access origin="https://ontwikkelstraat.iprofs.nl/svn/iprofs/nl/iprofs/kgb/20130227/w3cwidgets"/>  
+  <license>Free to use and distribute</license>
+</widget>
